@@ -1,9 +1,0 @@
-[submodule "Algoritmos-Lab-2"]
-	path = Algoritmos-Lab-2
-	url = https://github.com/cfortizp/Algoritmos-Lab-2.git
-[submodule "Algorithms-Lab-3"]
-	path = Algorithms-Lab-3
-	url = https://github.com/cfortizp/Algoritmos_Lab3.git
-[submodule "Algorithms-Lab-3-Extra"]
-	path = Algorithms-Lab-3-Extra
-	url = https://github.com/cfortizp/Algoritmos-Lab-3-Extracredito.git
