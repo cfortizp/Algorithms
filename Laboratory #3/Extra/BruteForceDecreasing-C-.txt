@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+long long inter_insertion_sort(vector<unsigned long long> A, long n){
+  long long intercambio = 0;
+  long long i,llave,j;
+  for(i = 1;i<n;i++){
+      llave = A[i];
+      j = i-1;
+      while ((j >= 0) && (llave > A[j])){
+      A[j+1] = A[j];
+      intercambio++;
+      j = j-1;
+      }
+    A[j+1] = llave;
+  }
+  return intercambio;
+}
+
+long long leer (istream& is){
+    long long a;
+    is>> a;
+    return a;
+}
+
+int main() {
+    cout<<"Brute Force Decreasing"<<endl;
+    unsigned t0, t1;
+    t0=clock();
+    ifstream archivo("fileC.txt");
+    long long n = leer(archivo);
+    vector <unsigned long long> A(n);
+    unsigned long long i;
+    unsigned long long j;
+    for(i=0;i<n;i++){
+        j = leer(archivo);
+        A[i]=j;
+    }
+    cout<<inter_insertion_sort(A,n)<<endl;
+    t1 = clock();
+    double time = (double(t1-t0)/CLOCKS_PER_SEC);
+    archivo.close();
+    cout << "Execution Time: " << time << endl;
+    return 0;
+}
+

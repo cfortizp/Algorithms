@@ -1,0 +1,51 @@
+import time
+
+def inter_insertion_sort(A,n):
+    intercambio = 0
+    for i in range(1,n):
+        llave = A[i]
+        j = i-1
+        while (j >= 0) and (llave < A[j]):
+            A[j+1] = A[j]
+            intercambio +=1
+            j -=1
+        A[j+1]=llave
+    return(intercambio)
+
+print "Brute Force"
+print "Best Case"
+start_time = time.time()
+f = open ('fileB.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print inter_insertion_sort(A,n)
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+print "Test Case"
+start_time = time.time()
+f = open ('fileC.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print inter_insertion_sort(A,n)
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+print "Worst Case"
+start_time = time.time()
+f = open ('fileW.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print inter_insertion_sort(A,n)
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+
+
+

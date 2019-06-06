@@ -1,0 +1,64 @@
+import time
+
+def merge_sort(A,n):
+    if n == 1:
+        return A,0
+    else:
+        a = A[:n/2]
+        b = A[n/2:]
+        a, ai = merge_sort(a,len(a))
+        b, bi = merge_sort(b,len(b))
+        c = []
+        i = 0
+        j = 0
+        count = 0 + ai + bi
+    while i < len(a) and j < len(b):
+        if a[i] <= b[j]:
+            c.append(a[i])
+            i += 1
+        else:
+            c.append(b[j])
+            j += 1
+            count += (len(a)-i)
+    c += a[i:]
+    c += b[j:]
+    return c, count
+
+print "Merge Sort Increasing"
+print "Best Case"
+start_time = time.time()
+f = open ('fileB.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print merge_sort(A,n)[1]
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+f.close()
+print "Test Case"
+start_time = time.time()
+f = open ('fileC.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print merge_sort(A,n)[1]
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+f.close()
+print "Worst Case"
+start_time = time.time()
+f = open ('fileW.txt','r')
+n = int(f.readline())   
+H = [ int(s) for s in f.readline().strip().split() ]
+A = []
+for i in range(n):
+    A.append(H[i])
+print merge_sort(A,n)[1]
+time1 = time.time() - start_time
+print "Execution Time: ", time1
+f.close()
+

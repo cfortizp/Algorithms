@@ -1,0 +1,135 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include<fstream>
+#include <ctime>
+
+using namespace std;
+
+vector<unsigned long long> merge_sort(vector<unsigned long long> A, long long n){
+    if (n==1){
+        vector <unsigned long long> A1(n+1);
+        unsigned long long i;
+        for(i=0;i<n;i++){
+            A1[i]=A[i];
+        }
+        A1[n]=0;
+        return A1;
+    }else{
+        vector <unsigned long long> a(n/2);
+        vector <unsigned long long> b(n-n/2);
+        long long aj = 0;
+        long long bj = 0;
+        for(unsigned long long k = 0; k<n;k++){
+            if(k<n/2){
+                a[aj]=A[k];
+                aj++;
+            }else{
+                b[bj]=A[k];
+                bj++;
+            }
+        }
+        vector<unsigned long long> ai = merge_sort(a,n/2);
+        vector<unsigned long long> bi = merge_sort(b,n-n/2);
+        vector<unsigned long long> c(n+1);
+        long long i = 0;
+        long long j = 0;
+        long long ca = 0;
+        long long cuenta = 0+ai[n/2]+bi[n-n/2];
+        while ((i<n/2) && (j<(n-n/2))){
+            if (ai[i] <= bi[j]){
+                c[ca] = ai[i];
+                i++;
+                ca++;
+            }else{
+                c[ca] = bi[j];
+                j++;
+                ca++;
+                cuenta = cuenta + n/2 - i;
+            }
+        }
+        for (unsigned long long k=i; k<n/2;k++){
+            c[ca]=ai[k];
+            ca++;
+        }
+        for (unsigned long long k=j; k<n-n/2;k++){
+            c[ca]=bi[k];
+            ca++;
+        }
+      c[n]=cuenta;
+      return c;
+    }
+}
+
+long long leer (istream& is){
+    long long a;
+    is>> a;
+    return a;
+}
+void bestcase(){
+    cout<<"Best Case"<<endl;
+    unsigned t0, t1;
+    t0=clock();
+    ifstream archivo("fileB.txt");
+    long long n = leer(archivo);
+    vector <unsigned long long> A(n);
+    unsigned long long i;
+    unsigned long long j;
+    for(i=0;i<n;i++){
+        j = leer(archivo);
+        A[i]=j;
+    }
+    cout<<merge_sort(A,n)[n]<<endl;
+    t1 = clock();
+    double time = (double(t1-t0)/CLOCKS_PER_SEC);
+    archivo.close();
+    cout << "Execution Time: " << time << endl;
+}
+void testcase(){
+    cout<<"Test Case"<<endl;
+    unsigned t0, t1;
+    t0=clock();
+    ifstream archivo("fileC.txt");
+    long long n = leer(archivo);
+    vector <unsigned long long> A(n);
+    unsigned long long i;
+    unsigned long long j;
+    for(i=0;i<n;i++){
+        j = leer(archivo);
+        A[i]=j;
+    }
+    cout<<merge_sort(A,n)[n]<<endl;
+    t1 = clock();
+    double time = (double(t1-t0)/CLOCKS_PER_SEC);
+    archivo.close();
+    cout << "Execution Time: " << time << endl;
+}
+void worstcase(){
+    cout<<"Worst Case"<<endl;
+    unsigned t0, t1;
+    t0=clock();
+    ifstream archivo("fileW.txt");
+    long long n = leer(archivo);
+    vector <unsigned long long> A(n);
+    unsigned long long i;
+    unsigned long long j;
+    for(i=0;i<n;i++){
+        j = leer(archivo);
+        A[i]=j;
+    }
+    cout<<merge_sort(A,n)[n]<<endl;
+    t1 = clock();
+    double time = (double(t1-t0)/CLOCKS_PER_SEC);
+    archivo.close();
+    cout << "Execution Time: " << time << endl;
+}
+
+int main() {
+    cout<<"Merge Sort"<<endl;
+    bestcase();
+    testcase();
+    worstcase();
+    return 0;
+}
